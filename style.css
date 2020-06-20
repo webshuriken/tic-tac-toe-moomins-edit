@@ -1,0 +1,418 @@
+/*TODO: update CSS to latest standards..*/
+
+html, body, div, articles, footer, header, figure, p, a, ul, li, ol, h1, h2, h3, h4, h5 {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  list-style: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+/*fonts*/
+@font-face {
+    font-family: ad;
+    src: url(fonts/ArchitectsDaughter.ttf);
+}
+.font-ad {
+  font-family: ad;
+  text-align: center;
+}
+
+/*Colours for the game*/
+.text-red {
+  color: red;
+}
+.text-orange {
+  color: orange;
+}
+.text-yellow {
+  color: yellow;
+}
+.text-green {
+  color: green;
+}
+.text-blue {
+  color: blue;
+}
+.text-purple {
+  color: purple;
+}
+
+#main-div {
+  background: #000;
+  width: 100%;
+  height: 480px;
+}
+/* \\ ##
+ * GLOBAL STYLES
+ * Styles all elements which are used throughout the games UI
+ * ## \\ */
+#mm-outside-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 320px;
+  height: 480px;
+  z-index: 60;
+}
+#mm-inside-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 61;
+}
+#mm-cover-img {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(241,241,227);
+}
+.game-board-image {
+  display: block;
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* game messages */
+.game-msg {
+  display: none;
+  position: absolute;
+  top: 128px;
+  width: 100%;
+  z-index: 88;
+}
+.game-msg-wrapper {
+  position: relative;
+  padding: 16px 8px;
+  margin: 0 auto;
+  width: 220px;
+  background: #2ab0e1;
+  color: yellow;
+  box-shadow: 0 0 32px #f00;
+
+}
+.game-msg p {
+  font-size: 1.4em;
+  text-align: center;
+}
+#select-character-msg {
+  display: none;
+  opacity: 0;
+
+}
+
+/* \\ ##
+ * COVER PAGE UI
+ * Create mobile UI for Cover Page
+ * z-index: 62-64
+ * ## \\ */
+#cover-page-ui {
+  position: absolute;
+  background-image: url("images/backgrounds/game-bg.jpg");
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+  z-index: 80;
+}
+.reveal-cover-page {
+  transform: translateX(320px);
+}
+
+.cover-title-wrapper h1 {
+  padding: 16px 0;
+  width: 214px;
+  font-size: 2.6em;
+  text-shadow: 1px 0 4px #ccc;
+}
+.content-by {
+  position: absolute;
+  right: 22px;
+  bottom: 0;
+}
+.content-by h2 {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  margin: 8px 0;
+  font-size: 1.2em;
+  line-height: 20px;
+}
+.content-by h2 a {
+  color: #000;
+  text-decoration: none;
+}
+.content-by h2 a:hover {
+  text-shadow: 2px 0 4px #000;
+}
+
+/* \\ ##
+ * BUTTONS
+ * ## \\ */
+.btn-buttons {
+  border-radius: 32px;
+  text-align: center;
+  -webkit-box-shadow: 0 0 16px 2px #000;
+  box-shadow: 0 0 16px 2px #000;
+}
+.btn-buttons:active {
+  -webkit-box-shadow: 0 0 16px 2px #000 inset;
+  box-shadow: 0 0 16px 2px #000 inset;
+}
+/*for animation purposes*/
+#character-select-footer-wrapper div:nth-child(odd) p,
+#game-play-footer-wrapper div:nth-child(odd) p {
+  transition: transform 0.8s ease .4s;
+}
+#character-select-footer-wrapper div:nth-child(even) p,
+#game-play-footer-wrapper div:nth-child(even) p {
+  transition: transform 0.6s ease .6s;
+}
+
+#btn-play-wrapper {
+  margin-top: 116px;
+  width: 100%;
+  z-index: 64;
+}
+#btn-play-wrapper p {
+  position: relative;
+  border-radius: 8px;
+  padding: 16px 0;
+  margin: 0 auto;
+  width: 120px;
+  background: yellow;
+  font-size: 2em;
+  text-align: center;
+
+}
+#btn-ok-wrapper,
+#btn-back-wrapper,
+#btn-restart-wrapper {
+  position: absolute;
+  top: 0;
+}
+.btn-quit-wrapper p,
+#btn-ok-wrapper p,
+#btn-back-wrapper p,
+#btn-restart-wrapper p {
+  padding: 8px 0;
+  width: 80px;
+  background: yellow;
+  color: #000;
+  border: 2px solid #000;
+  font-size: .8em;
+}
+.btn-quit-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 80px;
+}
+#btn-ok-wrapper,
+#btn-restart-wrapper {
+  right: 0;
+}
+
+/* the play button*/
+#btn-play-wrapper p:hover {
+   cursor: pointer;
+}
+
+/*button animations */
+.ani-btns {
+  transform: translateY(100px);
+}
+
+/* \\ ##
+ * GAME PAGE UI
+ * Style elements that are in view when user clicks to play game
+ * z-index: 65-66
+ * ## \\ */
+#game-page-ui {
+  position: absolute;
+  width: 320px;
+  height: 480px;
+  z-index: 65;
+}
+.game-ui-header {
+  position: relative;
+  text-align: center;
+  z-index: 66;
+}
+.game-ui-footer {
+  position: relative;
+  margin-top: 40px;
+  width: 100%;
+  height: 38px;
+  z-index: 90;
+}
+/* board for the game, used to both, play the game and select the character */
+.game-board-section {
+  position: relative;
+  padding: 50px 0;
+  width: 100%;
+  z-index: 67;
+}
+.game-board-section ul {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  width: 214px;
+  height: 226px;
+}
+.game-board-section ul li {
+  display: inline-block;
+  position: relative;
+  margin: 6px 4px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  transition: opacity .6s ease-in .3s;
+}
+.game-board-section ul li img {
+  display: block;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+}
+
+/*for the animation of the character select page*/
+.game-board-section ul .open-char-select:nth-child(even) {
+  opacity: 1;
+  transition: opacity 0.6s ease-in 0.3s;
+}
+.game-board-section ul .open-char-select:nth-child(odd) {
+  opacity: 1;
+  transition: opacity 0.6s ease-in 0.9s;
+}
+
+/* this wrapper is used to center the elements in footer */
+#character-select-footer-wrapper,
+#game-play-footer-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 298px;
+}
+
+/* \\ ##
+ * CHOOSE CHARACTER UI
+ * Create the Choose Character UI
+ * z-index: 67-70
+ * ## \\ */
+#choose-character-ui {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 66;
+}
+#choose-character-ui header {
+  height: 40px;
+  background: rgb(241,241,227);
+}
+#choose-character-ui header h2 {
+  position: relative;
+  padding: 4px 0;
+  text-shadow: 0 2px 4px #000;
+}
+
+/*on character select*/
+.chosen-character {
+  background: yellow;
+  box-shadow: 2px 0px 16px #000;
+}
+
+/* \\ ##
+ * GAME PLAY UI
+ * Create the Game Play UI
+ * z-index: 71-74
+ * ## \\ */
+#game-play-ui {
+  position: absolute;
+  top: 0;right:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 38;
+}
+#game-ui-header {
+  position: relative;
+  text-align: center;
+  background: rgb(241,241,227);
+  z-index: 90;
+}
+#game-play-ui header p {
+  height: 40px;
+}
+#game-play-ui header img {
+  position: relative;
+  margin: 0 16px;
+  width: 40px;
+  height: 40px;
+}
+#game-play-ui header img:nth-child(1) {
+  top: 8px;
+  webkit-box-shadow: 0 0 2px 2px #2ab0e1;
+  box-shadow: 0 0 8px 2px #2ab0e1;
+  -ms-transform: rotate(-7deg); /* IE 9 */
+  -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
+  transform: rotate(-7deg);
+}
+#game-play-ui header img:nth-child(2) {
+  top: 8px;
+  webkit-box-shadow: 0 0 2px 2px #fb000d;
+  box-shadow: 0 0 8px 2px #fb000d;
+  -ms-transform: rotate(7deg); /* IE 9 */
+  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+  transform: rotate(7deg);
+}
+
+ul#the-game-board li {
+  opacity: 1;
+}
+
+.game-play-wrapper {
+  opacity: 1 !important;
+  z-index: 80 !important;
+}
+
+/*Win Loose style*/
+.win-loose-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  z-index: 30;
+}
+.win-loose-wrapper section div h2 {
+  text-align: center;
+  background: #fff;
+  width: 100%;
+}
+.win-lose-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  z-index: 99;
+}
+.win-loose-wrapper section div img {
+  width: 100%;
+  height: auto;
+}
+.win-loose-ani-wrap {
+  z-index: 89;
+}
+.win-ani-img {
+  opacity: 1;
+}
+
+.winning-lights {
+  background: yellow;
+  box-shadow: 0 0 14px purple;
+  transition: background .2s ease .3s;
+}
