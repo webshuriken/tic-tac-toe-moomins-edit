@@ -7,35 +7,122 @@
   <meta name="author" content="Carlos E Alford M">
   <meta name="author" content="Amy L Sutton">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Noughts and Crossess</title> 
-  <link rel="stylesheet" href="style.css">
+  <title>Noughts and Crossess</title>
 </head>
-
-<section class="flex-container">
-  <main class="flex-item">
-
-    <!-- Cover page UI, initial view on page load. -->
-  	<section class="cover-page-ui">
-  	  <header>
-  	  	<h1>Tic Tac Toe</h1>
-  	  	<h2>Moomins Edition</h2>
-  	  </header>
-  	  <section class="btn-play-wrapper">
-  	  	<button>PLAY</button>
-  	  </section>
-  	  <footer class="content-by">
-  	  	<p>Created by:</p>
-  	  	<h3>
-  	  	  <a href="#">Amy the Hatter</a><br>
-  	  	  &amp;<br>
-  	  	  <a href="#">Carlos EAM</a>
-  	  	</h3>
-  	  </footer>
-  	</section>
-
-  </main>
-</section>
-
-<footer>
-  <p>Copyright 2019 CarlosEAM. All rights reserved.</p>
 <body>
+
+<!--
+#main-div id the container which holds the game.
+This gives it the flexibility of being used anywhere in the within the site.
+It will be used to determine the size of the elements in the game.
+ -->
+<div id="main-div">
+
+<div id="mm-outside-wrapper">
+  <div id="mm-inside-wrapper">
+    <img src="" id="mm-cover-img" alt="">
+
+<!-- Cover Page UI. Goes behind the window which holds the game UI. -->
+    <div id="cover-page-ui">
+      <div class="cover-title-wrapper">
+        <h1 class="font-ad"><span class="text-red">N</span><span class="text-orange">o</span><span class="text-yellow">u</span><span class="text-green">g</span><span class="text-blue">h</span><span class="text-purple">t</span><span class="text-red">s</span> &amp; <span class="text-red">C</span><span class="text-orange">r</span><span class="text-yellow">o</span><span class="text-green">s</span><span class="text-blue">s</span><span class="text-purple">e</span><span class="text-red">s</span></h1>
+      </div>
+      <div id="btn-play-wrapper">
+        <p class="btn-buttons">PLAY</p>
+      </div><!-- #btn-play -->
+      <div class="content-by">
+        <p>by:</p>
+        <h2 class="font-ad">
+          <a href="https://amythehatter.com" rel="author" target="_blank">Amy the Hatter</a><br>
+          &amp;<br>
+          <a href="https://carlosealford.com" rel="author" target="_blank">CarlosEAM</a>
+        </h2>
+      </div>
+    </div><!-- #cover-page-ui -->
+
+<!-- Game Page UI
+dispalys two pages.
+  - choose_character_ui
+  - game_play_ui
+-->
+    <div id="game-page-ui">
+<!-- SELECT CHARACTER UI -->
+    <div id="choose-character-ui">
+      <header class="game-ui-header">
+        <h2 class="font-ad">Choose Character</h2>
+    </header>
+    <section class="game-board-section">
+      <img src="images/backgrounds/game-board.jpg" class="game-board-image" alt="the-game-board">
+      <ul id="list-of-characters">
+        <li><img src="images/characters/hatifatner.png" id="hatifatner" alt="hatifatner"></li>
+        <li><img src="images/characters/snuffkin.png" id="snuffkin" alt="snuffkin"></li>
+        <li><img src="images/characters/sniff.png" id="sniff" alt="sniff"></li>
+        <li><img src="images/characters/little-my.png" id="little-my" alt="little-my"></li>
+        <li><img src="images/characters/moomin.png" id="moomin" alt="moomin"></li>
+        <li><img src="images/characters/groke.png" id="groke" alt="groke"></li>
+        <li><img src="images/characters/moomin-mama.png" id="moomin-mama" alt="moomin-mama"></li>
+        <li><img src="images/characters/light-house.png" id="light-house" alt="light-house"></li>
+        <li><img src="images/characters/moomin-papa.png" id="moomin-papa" alt="moomin-papa"></li>
+      </ul>
+      <div id="select-character-msg" class="game-msg">
+        <div class="game-msg-wrapper">
+          <p class="font-ad">Select a character</p>
+        </div>
+      </div>
+    </section>
+    <footer class="game-ui-footer">
+      <div id="character-select-footer-wrapper">
+        <div><p></p></div>
+        <div class="btn-quit-wrapper"><p class="btn-buttons select-btns ani-btns">QUIT</p></div>
+        <div id="btn-ok-wrapper"><p class="btn-buttons select-btns ani-btns">OK</p></div>
+      </div>
+    </footer>
+    </div>
+<!-- PLAY GAME UI -->
+    <div id="game-play-ui">
+      <header id="game-ui-header">
+      <p><img src="" alt=""> vs <img src="" alt=""></p>
+    </header>
+    <section class="game-board-section">
+      <ul id="the-game-board">
+        <li><img src="images/backgrounds/place_holder.png" id="square-0" alt="0"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-1" alt="1"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-2" alt="2"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-3" alt="3"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-4" alt="4"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-5" alt="5"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-6" alt="6"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-7" alt="7"></li>
+        <li><img src="images/backgrounds/place_holder.png" id="square-8" alt="8"></li>
+      </ul>
+    </section>
+    <footer class="game-ui-footer">
+      <div id="game-play-footer-wrapper">
+        <div id="btn-back-wrapper"><p class="btn-buttons select-btns ani-btns">BACK</p></div>
+        <div class="btn-quit-wrapper"><p class="btn-buttons select-btns ani-btns">QUIT</p></div>
+        <div id="btn-restart-wrapper"><p class="btn-buttons select-btns ani-btns">RESTART</p></div>
+      </div>
+    </footer>
+    </div>
+<!-- WIN/LOOSE image -->
+    <div class="win-loose-wrapper">
+        <section>
+          <div class="win-lose-img">
+            <h2>Winner :)</h2>
+            <img src="images/backgrounds/happy_moomin.jpg" alt="you win image">
+          </div>
+          <div class="win-lose-img">
+            <h2>lose</h2>
+            <img src="images/backgrounds/sad_moomin.jpg" alt="you loose image">
+          </div>
+        </section>
+      </div>
+
+  </div><!-- game-page-ui -->
+
+  </div><!-- #mm-inside-wrapper -->
+</div><!-- #mm-outide-wrapper -->
+
+</div><!-- #main-div -->
+</body>
+</html>
