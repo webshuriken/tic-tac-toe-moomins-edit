@@ -360,15 +360,11 @@
 #game-play-ui header img:nth-child(1) {
   top: 8px;
   box-shadow: 0 0 8px 2px var(--theme-ceam-blue);
-  -ms-transform: rotate(-7deg); /* IE 9 */
-  -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
   transform: rotate(-7deg);
 }
 #game-play-ui header img:nth-child(2) {
   top: 8px;
   box-shadow: 0 0 8px 2px var(--theme-red);
-  -ms-transform: rotate(7deg); /* IE 9 */
-  -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
   transform: rotate(7deg);
 }
 
