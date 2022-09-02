@@ -1,16 +1,13 @@
 /*
  * name: Noughts and Crosses. MOOMINS AND MYS style.
- * author: Amy L Sutton (Designer), Carlos EAM (Developer)
+ * author: Amy L Sutton (Artist), Carlos EAM (Developer)
  * description: A free game of noughts and crosses.
  * Based on the kids novel the Moomins, we do not own any rights to their name or products.
  * This  game was made over a couple of days for fun.
- * Anyone can copy this game free of charge.
  * created: 28/01/17
- * revised: 20-06-2020
- * version: 1.0
+ * revised: 03-09-2022
+ * version: 2.0
  */
-
-// TODO: Update the code to ES6
 
 function startMMGame(){
   Game_Page_UI.initGameSettings();
@@ -18,7 +15,7 @@ function startMMGame(){
 /*
  * Game_Page_UI. The games home page.
  */
-var Game_Page_UI = {
+const Game_Page_UI = {
   gamePageUIOpen: false,
   coverPageOn: null,
   characterSelectPageOpen: false,
@@ -26,52 +23,48 @@ var Game_Page_UI = {
   playerCharacter: null,
   computerCharacter: null,
   initGameSettings: function() {
-	// move #cover-page-ui block to background
-	this.coverPage = document.getElementById("cover-page-ui");
-	setTimeout(function(){ Game_Page_UI.coverPage.className="reveal-cover-page"; }, 300);
-    // switch gamePageUI on.
-	this.gamePageUIOpen = true;
-	// call Character_Select_UI object and init
-	this.openCharacterSelect();
+		// move #cover-page-ui block to background
+		this.coverPage = document.querySelector("#cover-page-ui");
+		setTimeout(() => { Game_Page_UI.coverPage.className="reveal-cover-page"; }, 300);
+			// switch gamePageUI on.
+		this.gamePageUIOpen = true;
+		// call Character_Select_UI object and init
+		this.openCharacterSelect();
   },
-  openCharacterSelect: function(){
-	Character_Select_UI.initUISettings();
-	Character_Select_UI.openCloseUI(true);
-	this.characterSelectPageOpen = true;
+  openCharacterSelect: function() {
+		Character_Select_UI.initUISettings();
+		Character_Select_UI.openCloseUI(true);
+		this.characterSelectPageOpen = true;
   },
-  openGamePlay: function(){
-	this.gamePlayPageOpen = true;
-	// all settings must be init at start, every time.
-	Game_Play_UI.initUISettings(this.playerCharacter, this.computerCharacter);
+  openGamePlay: function() {
+		this.gamePlayPageOpen = true;
+		// all settings must be init at start, every time.
+		Game_Play_UI.initUISettings(this.playerCharacter, this.computerCharacter);
   },
   checkTheProperties: function() {
     // check that all settings have been set properly
   },
-  exitGame: function(){
-	this.playerCharacter = null;
-	this.computerCharacter = null;
-	this.characterSelectPageOpen = false;
-	this.gamePlayPageOpen = false;
-	this.gamePageUIOpen = false;
-	// display the home page
-	setTimeout(function(){ Game_Page_UI.coverPage.className=""; }, 300);
+  exitGame: function() {
+		this.playerCharacter = null;
+		this.computerCharacter = null;
+		this.characterSelectPageOpen = false;
+		this.gamePlayPageOpen = false;
+		this.gamePageUIOpen = false;
+		// display the home page
+		setTimeout(() => { Game_Page_UI.coverPage.className=""; }, 300);
   },
   loadGame: function(player, computer){
-	this.characterSelectPageOpen = false;
-	this.playerCharacter = player;
-	// make sure computer and payer dont have the same characters
-	while(computer == player){
-      computer = Character_Select_UI.randomSelection();
-	}
-	this.computerCharacter = computer;
-	this.openGamePlay();
+		this.characterSelectPageOpen = false;
+		this.playerCharacter = player;
+		this.computerCharacter = computer;
+		this.openGamePlay();
   },
 }
 
 /*
  * Character selection UI.
  */
-var Character_Select_UI = {
+const Character_Select_UI = {
   uiActive: false,
   uiOpen: false,
   playerCharacter: null,
@@ -79,93 +72,94 @@ var Character_Select_UI = {
   msg: null,
   characters: ["hatifatner","snuffkin","sniff","little-my","moomin","groke","moomin-mama","light-house","moomin-papa"],
   initUISettings: function(){
-	this.uiActive = true;
-	// buttons
-	this.btns = document.getElementsByClassName("select-btns");
-	this.btns[0].className = "btn-buttons select-btns";
-  	this.btns[1].className = "btn-buttons select-btns";
-	// add event listeners to the list of characters to detect user selection
-	this.charList = document.getElementById("list-of-characters").getElementsByTagName("LI");
-	for ( var i=0; i < 9; i++ ){
-	  this.charList[i].className = "open-char-select";
-	  this.charList[i].getElementsByTagName("IMG")[0].addEventListener( 'touchstart', Character_Select_UI.characterSelect, false );
-	  this.charList[i].getElementsByTagName("IMG")[0].addEventListener( 'click', Character_Select_UI.characterSelect, false );
-	};
-	// add event listeners to the ok and quit buttons
-	var elem = document.getElementById("character-select-footer-wrapper").getElementsByTagName("p");
-	for ( var i=1; i <= 2; i++ ){
-	  elem[i].addEventListener( 'touchstart', Character_Select_UI.btnOkQuit, false );
-	  elem[i].addEventListener( 'click', Character_Select_UI.btnOkQuit, false );
-	}
-	// assign element for msg.
-	this.msg = document.getElementById("select-character-msg");
+		this.uiActive = true;
+		// buttons
+		this.btns = document.querySelectorAll(".select-btns");
+		// display only the button for this UI
+		this.btns[0].className = "btn-buttons select-btns";
+		this.btns[1].className = "btn-buttons select-btns";
+		// add event listeners to the list of characters to detect user selection
+		this.charList = document.querySelectorAll("#list-of-characters li");
+		for ( let i=0; i < 9; i++ ){
+			this.charList[i].className = "open-char-select";
+			this.charList[i].querySelector("img").addEventListener( 'touchstart', Character_Select_UI.characterSelect, false );
+			this.charList[i].querySelector("img").addEventListener( 'click', Character_Select_UI.characterSelect, false );
+		};
+		// add event listeners to the ok and quit buttons
+		let elem = document.querySelectorAll("#character-select-footer-wrapper button");
+		for ( let i=1; i <= 2; i++ ){
+			elem[i].addEventListener( 'touchstart', Character_Select_UI.btnOkQuit, false );
+			elem[i].addEventListener( 'click', Character_Select_UI.btnOkQuit, false );
+		}
+		// assign element for msg.
+		this.msg = document.querySelector("#select-character-msg");
   },
   clearSettings: function(){
-	// reset all settings for this object and exit the game
-	this.btns[0].className = "btn-buttons select-btns ani-btns";
-  	this.btns[1].className = "btn-buttons select-btns ani-btns";
-	this.uiActive = false;
-	this.uiOpen = false;
-	if ( this.playerCharacter ){
-	  Character_Select_UI.playerCharacter.className = "";
-	}
-	// make the characters opacity 0 again
-	for ( var i=0; i < 9; i++ ){
-	  this.charList[i].className = "";
-	};
-	// reset variables
-	this.playerCharacter = null;
-	this.computerCharacter = null;
+		// reset all settings for this object and exit the game
+		this.btns[0].className = "btn-buttons select-btns ani-btns";
+		this.btns[1].className = "btn-buttons select-btns ani-btns";
+		this.uiActive = false;
+		this.uiOpen = false;
+		if ( this.playerCharacter ){
+			Character_Select_UI.playerCharacter.className = "";
+		}
+		// make the characters opacity 0 again
+		for ( let i=0; i < 9; i++ ){
+			this.charList[i].className = "";
+		};
+		// reset variables
+		this.playerCharacter = null;
+		this.computerCharacter = null;
   },
   openCloseUI: function(openOrClose) {
-	/*
-	 * the openCloseUI method takes a boolean parameter to indicate if
-	 * the request is to close the window (false) or open it (true)
-	 */
-	var elem = document.getElementById("choose-character-ui");
-	if ( openOrClose && !this.uiOpen ){
-	  elem.style.zIndex=40;
-	  this.uiOpen = true;
-	}else if ( !openOrClose && this.uiOpen ){
-	  elem.style.zIndex=66;
-	  this.clearSettings();
-	  this.uiOpen = false;
-	}else {
-	  console.log("EPA! - Character_Select_UI, openCloseUI");
-	}
+		/*
+		* the openCloseUI method takes a boolean parameter to indicate if
+		* the request is to close the window (false) or open it (true)
+		*/
+		let elem = document.querySelector("#choose-character-ui");
+		if ( openOrClose && !this.uiOpen ){
+			elem.style.zIndex=66;
+			this.uiOpen = true;
+		}else if ( !openOrClose && this.uiOpen ){
+			elem.style.zIndex=40;
+			this.clearSettings();
+			this.uiOpen = false;
+		}else {
+			console.log("EPA! - Character_Select_UI, openCloseUI");
+		}
   },
-  characterSelect: function(e){
-	// remove shadow from previous selection so no 2 characters are highlighted simultaneously
-    if (Character_Select_UI.playerCharacter != null) {
-      Character_Select_UI.playerCharacter.className = "";
-	}
-	this.className = "chosen-character";
-	Character_Select_UI.playerCharacter = this;
+  characterSelect: function(e) {
+		// remove shadow from previous selection so no 2 characters are highlighted simultaneously
+		if (Character_Select_UI.playerCharacter != null) {
+			Character_Select_UI.playerCharacter.className = "";
+		}
+		// add class to selected character and update object key with its value for later use
+		this.className = "chosen-character";
+		Character_Select_UI.playerCharacter = this;
   },
-  randomSelection: function(){
-	var a = 0;
-	for (var i=0;i < 9; i++){
-	  a += Math.round(Math.random());
-	}
-	return this.characters[a];
+  randomSelection: function(player) {
+		let computer = player;
+		// computer must use a different character to player
+		while(computer === player){
+			computer = this.characters[Math.floor(Math.random() * 9)];
+		}
+		return computer;
   },
   gameMsg: function(){
-	  Character_Select_UI.msg.style.display="block";
-	  Character_Select_UI.msg.style.opacity=1;
-	setTimeout(function(){
-	  Character_Select_UI.msg.style.display="hidden";
-	  Character_Select_UI.msg.style.opacity=0;
-	}, 1500);
+	  Character_Select_UI.msg.classList.toggle('show');
+		setTimeout(() => {
+			Character_Select_UI.msg.classList.toggle('show');
+		}, 1000);
   },
   btnOkQuit: function(e){
-	if ( this.innerHTML == "OK" ){
-	  Character_Select_UI.loadGame();
-	}else if ( this.innerHTML == "QUIT" ){
-	  Character_Select_UI.openCloseUI(false);
-	  Game_Page_UI.exitGame();
-	}else{
-	  console.log("EPA! - Character_Select_UI, btnOkQuit");
-	}
+		if ( this.innerHTML == "OK" ){
+			Character_Select_UI.loadGame();
+		}else if ( this.innerHTML == "QUIT" ){
+			Character_Select_UI.openCloseUI(false);
+			Game_Page_UI.exitGame();
+		}else{
+			console.log("EPA! - Character_Select_UI, btnOkQuit");
+		}
   },
   aniBtns: function() {
   	this.btns[0].className = "btn-buttons select-btns ani-btns";
@@ -174,7 +168,8 @@ var Character_Select_UI = {
   loadGame: function() {
 	if (this.playerCharacter != null) {
 	  this.aniBtns();
-	  Game_Page_UI.loadGame(this.playerCharacter.getAttribute("alt"), this.randomSelection());
+		let player = this.playerCharacter.getAttribute("alt");
+	  Game_Page_UI.loadGame(player, this.randomSelection(player));
 	  this.openCloseUI(false);
 	}else{
 	  Character_Select_UI.gameMsg();
@@ -185,7 +180,7 @@ var Character_Select_UI = {
 /*
  * Game play UI, this is the where game is played
  */
-var Game_Play_UI = {
+const Game_Play_UI = {
   uiActive: false,
   uiOpen: false,
   player: null,
@@ -207,31 +202,31 @@ var Game_Play_UI = {
   initUISettings: function(player, computer){
   	// initialize the properties
   	this.uiActive = true;
-  	this.player = "images/characters/" + player + ".png";
-  	this.computer = "images/characters/" + computer + ".png";
-  	this.uiWrapper = document.getElementById("game-play-ui");
-  	// win lose images
-  	this.imgWrapper = document.getElementsByClassName("win-loose-wrapper");
-    this.wlImg = document.getElementsByClassName("win-lose-img");
-  	// buttons
-  	this.btns = document.getElementsByClassName("select-btns");
+  	this.player = `images/characters/${player}.png`;
+  	this.computer = `images/characters/${computer}.png`;
+  	this.uiWrapper = document.querySelector("#game-play-ui");
+  	// win lose images class
+  	this.imgWrapper = document.querySelectorAll(".win-loose-wrapper");
+    this.wlImg = document.querySelectorAll(".win-lose-img");
+  	// display the buttons for current UI
+  	this.btns = document.querySelectorAll(".select-btns");
   	this.btns[2].className = "btn-buttons select-btns";
-    	this.btns[3].className = "btn-buttons select-btns";
-    	this.btns[4].className = "btn-buttons select-btns";
-  	this.gameBoardWrapper = document.getElementById("the-game-board").getElementsByTagName("IMG");
+		this.btns[3].className = "btn-buttons select-btns";
+		this.btns[4].className = "btn-buttons select-btns";
+  	this.gameBoardWrapper = document.querySelectorAll("#the-game-board img");
   	// add event listeners to the grid the user will interact with
-  	for ( var i=0; i < 9; i++ ){
+  	for ( let i=0; i < 9; i++ ){
   	  this.gameBoardWrapper[i].addEventListener( 'touchstart', Game_Play_UI.playerMove, false );
   	  this.gameBoardWrapper[i].addEventListener( 'click', Game_Play_UI.playerMove, false );
   	};
   	// add event listeners to the back, quit and restart buttons
-  	var elem = document.getElementById("game-play-footer-wrapper").getElementsByTagName("p");
-  	for ( var i=0; i <= 2; i++ ){
+  	let elem = document.querySelectorAll("#game-play-footer-wrapper button");
+  	for ( let i=0; i <= 2; i++ ){
   	  elem[i].addEventListener( 'touchstart', Game_Play_UI.btnBackQuitRestart, false );
   	  elem[i].addEventListener( 'click', Game_Play_UI.btnBackQuitRestart, false );
   	};
   	// add images to top of game board. Player 1 vs player 2
-  	var playersImg = document.getElementById("game-ui-header").getElementsByTagName("IMG");
+  	let playersImg = document.querySelectorAll("#game-ui-header img");
   	playersImg[0].setAttribute("src", this.player);
   	playersImg[1].setAttribute("src", this.computer);
   	// build UI
@@ -246,12 +241,12 @@ var Game_Play_UI = {
   	this.restart(true)
   	// reset object properties to original values
   	this.btns[2].className = "btn-buttons select-btns ani-btns";
-    	this.btns[3].className = "btn-buttons select-btns ani-btns";
-    	this.btns[4].className = "btn-buttons select-btns ani-btns";
-      this.uiWrapper.className = "";
-      this.player = null;
-      this.computer = null;
-      this.uiWrapper = null;
+		this.btns[3].className = "btn-buttons select-btns ani-btns";
+		this.btns[4].className = "btn-buttons select-btns ani-btns";
+		this.uiWrapper.className = "";
+		this.player = null;
+		this.computer = null;
+		this.uiWrapper = null;
   	this.uiOpen = false;
   	this.uiActive = false;
   	// call main Exit method to close the whole game
@@ -265,7 +260,7 @@ var Game_Play_UI = {
   	this.wlImg[0].className = "win-lose-img";
   	this.wlImg[1].className = "win-lose-img";
   	// clear the board
-  	for (var i=0; i < 9; i++){
+  	for (let i=0; i < 9; i++){
   	  // place-holder.png is a transparent image used to reset the game board
   	  this.gameBoardWrapper[i].setAttribute("src", "images/backgrounds/place_holder.png");
   	  this.gameBoardSelection[i] = 0;
@@ -286,7 +281,7 @@ var Game_Play_UI = {
   playerMove: function(){
     // continue to place pieces on board only if there has not been a winner
   	if (!Game_Play_UI.foundWinner){
-  	  // call method to add image to grid area user selected
+  	  // add image to grid area user selected, if not done so already
   	  if (Game_Play_UI.gameBoardSelection[this.getAttribute("alt")] == 0){
   	    Game_Play_UI.makeMove(this);
   	  }else{
@@ -299,7 +294,7 @@ var Game_Play_UI = {
   	}
   },
   computerMove: function(){
-  	var moveTo;
+  	let moveTo;
   	if (this.playerTurn == 1){
   	  moveTo = this.randomMove(9);
   	  this.makeMove(this.gameBoardWrapper[moveTo]);
@@ -314,8 +309,8 @@ var Game_Play_UI = {
   	}
   },
   randomMove: function(nOfLoops){
-  	var a = 0;
-  	for (var i=0;i < nOfLoops; i++){
+  	let a = 0;
+  	for (let i=0;i < nOfLoops; i++){
   	  a += Math.round(Math.random());
   	}
   	// check if the space is free, if not then recursion.
@@ -323,9 +318,9 @@ var Game_Play_UI = {
   	  a = this.randomMove(9);
   	}
   	return a;
-    },
-    smartMove: function(smartRandom){
-  	var moveTo;
+  },
+  smartMove: function(smartRandom){
+  	let moveTo;
   	if (!smartRandom){
   	  moveTo = this.whereToMove(3);
   	}
@@ -333,32 +328,35 @@ var Game_Play_UI = {
   },
   makeMove: function(elem){
   	// update the spacesAvail array to show the latest move;
-  	var spaceTakenBy = elem.getAttribute("id").substring(7,8);
-  	this.spacesAvail[spaceTakenBy] = 1;
-  	// check who made the this move and update accordingly.
-  	if ( (this.playerTurn % 2) && this.playerTurn < 9 ){
-  	  // even is computer turn
-  	  setTimeout(function(){
-          elem.setAttribute("src", Game_Play_UI.computer);
-  	    Game_Play_UI.cMovesMade.push(spaceTakenBy);
-  	    Game_Play_UI.cLastMove = spaceTakenBy;
-  	  }, 200, elem);
-  	  this.gameBoardSelection[elem.getAttribute("alt")] = 1;
-  	}else if ( this.playerTurn < 9 ){
-        // odd are the human player turn
-  	  elem.setAttribute("src", this.player);
-  	  this.oMovesMade.push(spaceTakenBy);
-  	  this.gameBoardSelection[elem.getAttribute("alt")] = 4;
-  	}else{
-  	  console.log("EPA! - Game_Play_UI, makeMove");
-  	}
-  	if (this.playerTurn >= 4){
-  	  this.checkMove();
-  	}
+		let spaceTakenBy;
+		if (this.playerTurn < 9) {
+			spaceTakenBy = elem.getAttribute("id").substring(7,8);
+			this.spacesAvail[spaceTakenBy] = 1;
+			// check who made the this move and update accordingly.
+			if ( (this.playerTurn % 2) ){
+				// even is computer turn
+				setTimeout(() => {
+					elem.setAttribute("src", Game_Play_UI.computer);
+					Game_Play_UI.cMovesMade.push(spaceTakenBy);
+					Game_Play_UI.cLastMove = spaceTakenBy;
+				}, 200, elem);
+				this.gameBoardSelection[elem.getAttribute("alt")] = 1;
+			}else if ( this.playerTurn < 9 ){
+					// odd is human player turn
+				elem.setAttribute("src", this.player);
+				this.oMovesMade.push(spaceTakenBy);
+				this.gameBoardSelection[elem.getAttribute("alt")] = 4;
+			}else{
+				console.log("EPA! - Game_Play_UI, makeMove");
+			}
+			if (this.playerTurn >= 4){
+				this.checkMove();
+			}
+		}
   	this.playerTurn++;
   },
   whereToMove: function(onMove){
-  	var moveTo;
+  	let moveTo;
   	if (onMove >= 3){
   	  moveTo = this.checkMovesAvail(3);
   	}else{
@@ -367,7 +365,7 @@ var Game_Play_UI = {
   	return moveTo;
   },
   checkMovesAvail: function(onMove){
-  	var moveTo;
+  	let moveTo;
   	if (onMove >= 3){
   	  // check win moves
   	  moveTo = this.checkWinMoves(this.cMovesMade, 1);
@@ -375,61 +373,61 @@ var Game_Play_UI = {
   	}
   },
   checkWinMoves: function(playerToCheck, nOfLoops){
-  	var availMoves = [];
-  	var moveTo;
-  	var v;
+  	let availMoves = [];
+  	let moveTo;
+  	let v;
   	// cycle through WinMoves and find the patterns which are a combination of 2 of the opponents moves. Create a list.
-  	for (var outter=0; outter < playerToCheck.length; outter++){
-  	  for (var h=0; h < 8; h++){
+  	for (let outter=0; outter < playerToCheck.length; outter++){
+  	  for (let h=0; h < 8; h++){
   	    v = 0;
   	    while(v < 3){
-  		  if (this.WinMoves[h][v] == playerToCheck[outter]){
-  		    availMoves.push(h);
-  	      }
-  	    v++;
-  	    }
+					if (this.WinMoves[h][v] == playerToCheck[outter]){
+						availMoves.push(h);
+					}
+					v++;
+				}
   	  }
       }
   	// go through the list just adquired and delete duplicate items value
-  	for (var i=0; i < availMoves.length; i++){
+  	for (let i=0; i < availMoves.length; i++){
   	  innerLoop = 0;
   	  a = 0;
   	  while (innerLoop < availMoves.length){
-  		a += (availMoves[i] == availMoves[innerLoop])?1:0;
-  		if (a == 2){
-  		  availMoves.splice(innerLoop,1);
-  		}
-  		innerLoop++;
+				a += (availMoves[i] == availMoves[innerLoop])?1:0;
+				if (a == 2){
+					availMoves.splice(innerLoop,1);
+				}
+				innerLoop++;
   	  }
   	}
   	// now take the array availMoves and find the patterns which are a combination of 2 of the opponents moves.
-  	var pattern = [0,0,0,0,0,0,0,0];
-  	for (var outterLoop=0; outterLoop < availMoves.length; outterLoop++){
-  	  for (var middleLoop=0; middleLoop < playerToCheck.length; middleLoop++){
-  		v=0;
-  		while (v < 3){
-  	      if (this.WinMoves[availMoves[outterLoop]][v] == playerToCheck[middleLoop]){
-  			pattern[outterLoop]++;
-  		  }
-  		  v++;
-  		}
+  	let pattern = [0,0,0,0,0,0,0,0];
+  	for (let outterLoop=0; outterLoop < availMoves.length; outterLoop++){
+  	  for (let middleLoop=0; middleLoop < playerToCheck.length; middleLoop++){
+				v=0;
+				while (v < 3){
+					if (this.WinMoves[availMoves[outterLoop]][v] == playerToCheck[middleLoop]){
+						pattern[outterLoop]++;
+					}
+					v++;
+				}
   	  }
   	}
   	// filters throught the pattern array and get which patterns are to be countered
-  	var patternB = [];
-  	for(var i=0; i < pattern.length; i++){
+  	let patternB = [];
+  	for(let i=0; i < pattern.length; i++){
   	  if (pattern[i] == 2){
-  		patternB.push(availMoves[i]);
+  			patternB.push(availMoves[i]);
   	  }
   	}
   	// find free space on the board to move to.
-  	for (var i=0; i < patternB.length; i++){
+  	for (let i=0; i < patternB.length; i++){
   	  v=0;
   	  while (v < 3){
-  		if (this.spacesAvail[this.WinMoves[patternB[i]][v]] == 0){
-  		  moveTo = this.WinMoves[patternB[i]][v];
-  		}
-  		v++;
+				if (this.spacesAvail[this.WinMoves[patternB[i]][v]] == 0){
+					moveTo = this.WinMoves[patternB[i]][v];
+				}
+				v++;
   	  }
   	}
   	// check for winning moves or make a random move.
@@ -438,20 +436,20 @@ var Game_Play_UI = {
   	}else if (moveTo == undefined && nOfLoops ==2){
   	  v=0;
   	  while (v<9){
-  		if (this.spacesAvail[v] == 0){
-  		  moveTo = v;
-  		}
-  		v++;
+				if (this.spacesAvail[v] == 0){
+					moveTo = v;
+				}
+				v++;
   	  }
   	}
     return moveTo;
   },
   checkMove: function(){
   	// array stores results of each loop and is sent as parameter to checkForWinner method
-  	var points = [0,0,0,0,0,0,0,0];
+  	let points = [0,0,0,0,0,0,0,0];
   	this.winningPos;
   	// Check top horizontal row
-  	var i = 0;
+  	let i = 0;
   	while(i < 3){
   	  points[0] += this.gameBoardSelection[i];
   	  i++;
@@ -502,59 +500,59 @@ var Game_Play_UI = {
   	this.checkForWinner(points);
   },
   checkForWinner: function(points){
-  	var playerMove = ( (this.playerTurn%2) == 0 )?12:3;
-  	for (var i=0; i<8; i++){
+  	let playerMove = ( (this.playerTurn%2) == 0 )?12:3;
+  	for (let i=0; i<8; i++){
   	  if (points[i] == playerMove){
   	  	switch(this.winningPos) {
-            case 0:
-              this.winnerLights(0, 1);
-              break;
-            case 1:
-              this.winnerLights(3, 1);
-              break;
-            case 2:
-              this.winnerLights(6, 1);
-              break;
-            case 3:
-              this.winnerLights(0, 3);
-              break;
-            case 4:
-              this.winnerLights(1, 3);
-              break;
-            case 5:
-              this.winnerLights(2, 3);
-              break;
-            case 6:
-              this.winnerLights(0, 4);
-              break;
-            case 7:
-              this.winnerLights(2, 2, false);
-              break;
-            default:
-              // it should never land here
-              console.log("!!!Breaking as checkForWinner");
-          }
-  		this.foundWinner = true;
-  		var tis = this;
-  		setTimeout(function(){
-  		  tis.showWinner(playerMove);
-  	    }, 2000, tis, playerMove);
-  		break;
+					case 0:
+						this.winnerLights(0, 1);
+						break;
+					case 1:
+						this.winnerLights(3, 1);
+						break;
+					case 2:
+						this.winnerLights(6, 1);
+						break;
+					case 3:
+						this.winnerLights(0, 3);
+						break;
+					case 4:
+						this.winnerLights(1, 3);
+						break;
+					case 5:
+						this.winnerLights(2, 3);
+						break;
+					case 6:
+						this.winnerLights(0, 4);
+						break;
+					case 7:
+						this.winnerLights(2, 2, false);
+						break;
+					default:
+						// it should never land here
+						console.log("!!!Breaking as checkForWinner");
+      	}
+  			this.foundWinner = true;
+  			let tis = this;
+  			setTimeout(() => {
+  		  	tis.showWinner(playerMove);
+  	    }, 1000, tis, playerMove);
+  			break;
   	  }
   	}
   },
   winnerLights: function(startAt, increment, lightsOn){
-  	var countFrom = startAt;
-  	var cName = (lightsOn)?"":"winning-lights";
+  	let countFrom = startAt;
+  	let cName = (lightsOn)?"":"winning-lights";
   	// turns lights ON and OFF for the winning move
-  	for (var i=0; i < 3; i++){
-      document.getElementById("square-" + countFrom).className=cName;
+  	for (let i=0; i < 3; i++){
+      document.querySelector("#square-" + countFrom).classList.toggle('winning-lights');
       // set timeout so the lights go outter
       countFrom += increment;
   	}
   	// functions call itself if the light are turning on to turn them OFF
   	if (!lightsOn){
-  	  setTimeout(function(){Game_Play_UI.winnerLights(startAt, increment, true);}, 2000, startAt, increment);
+  	  setTimeout(() => {Game_Play_UI.winnerLights(startAt, increment, true);}, 2000, startAt, increment);
     }
   },
   showWinner: function(winner){
@@ -582,6 +580,6 @@ var Game_Play_UI = {
 }
 
 // add event listener to start button so to be able to start the game.
-var startButton = document.getElementById("btn-play-wrapper").getElementsByTagName("p")[0];
+let startButton = document.querySelector("#btn-play-wrapper button");
 startButton.addEventListener('touchstart', startMMGame, false);
 startButton.addEventListener('click', startMMGame, false);
