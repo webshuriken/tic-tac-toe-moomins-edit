@@ -117,9 +117,12 @@
   text-shadow: 0 1px 2px rgb(var(--theme-black));
 }
 #select-character-msg {
-  display: none;
-  opacity: 0;
-
+  display: block;
+  transform: scale(0);
+  transition: transform 200ms;
+}
+#select-character-msg.show {
+  transform: scale(1);
 }
 
 /*
@@ -169,6 +172,7 @@
  * BUTTONS
  */
 .btn-buttons {
+  display: block;
   border-radius: 32px;
   text-align: center;
   box-shadow: 0 0 16px 0 rgba(var(--theme-black), .6);
@@ -180,12 +184,12 @@
   cursor: pointer;
 }
 /*for animation purposes*/
-#character-select-footer-wrapper div:nth-child(odd) p,
-#game-play-footer-wrapper div:nth-child(odd) p {
+#character-select-footer-wrapper div:nth-child(odd) button,
+#game-play-footer-wrapper div:nth-child(odd) button {
   transition: transform 0.8s ease .4s;
 }
-#character-select-footer-wrapper div:nth-child(even) p,
-#game-play-footer-wrapper div:nth-child(even) p {
+#character-select-footer-wrapper div:nth-child(even) button,
+#game-play-footer-wrapper div:nth-child(even) button {
   transition: transform 0.6s ease .6s;
 }
 
@@ -194,7 +198,7 @@
   width: 100%;
   z-index: 64;
 }
-#btn-play-wrapper p {
+#btn-play-wrapper button {
   border-radius: 8px;
   padding: 16px 0;
   margin: 0 auto;
@@ -204,16 +208,10 @@
   text-align: center;
 
 }
-#btn-ok-wrapper,
-#btn-back-wrapper,
-#btn-restart-wrapper {
-  position: absolute;
-  top: 0;
-}
-.btn-quit-wrapper p,
-#btn-ok-wrapper p,
-#btn-back-wrapper p,
-#btn-restart-wrapper p {
+.btn-quit-wrapper button,
+#btn-ok-wrapper button,
+#btn-back-wrapper button,
+#btn-restart-wrapper button {
   padding: 8px 0;
   width: 80px;
   background: var(--theme-yellow);
@@ -221,17 +219,13 @@
   border: 2px solid rgb(var(--theme-black));
   font-size: .8em;
 }
-.btn-quit-wrapper {
-  margin: 0 auto;
+.btn-quit-wrapper,
+.sr-hidden-btn {
   width: 80px;
-}
-#btn-ok-wrapper,
-#btn-restart-wrapper {
-  right: 0;
 }
 
 /* the play button*/
-#btn-play-wrapper p:hover {
+#btn-play-wrapper button:hover {
    cursor: pointer;
 }
 
@@ -305,6 +299,8 @@
 /* this wrapper is used to center the elements in footer */
 #character-select-footer-wrapper,
 #game-play-footer-wrapper {
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   width: 298px;
 }
@@ -420,6 +416,10 @@ ul#the-game-board li {
 
 .winning-lights {
   background: var(--theme-yellow);
-  box-shadow: 0 0 14px var(--theme-purple);
-  transition: background .2s ease .3s;
+  transition: background .2s ease;
+}
+
+/* A11Y */
+.sr-hidden {
+  visibility: hidden;
 }
