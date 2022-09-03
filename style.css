@@ -216,11 +216,11 @@
 #btn-ok-wrapper button,
 #btn-back-wrapper button,
 #btn-restart-wrapper button {
+  border: 2px solid rgb(var(--theme-black));
   padding: 8px 0;
   width: 80px;
   background: var(--theme-yellow);
   color: rgb(var(--theme-black));
-  border: 2px solid rgb(var(--theme-black));
   font-size: .8em;
 }
 .btn-quit-wrapper,
@@ -230,7 +230,7 @@
 
 /* the play button*/
 #btn-play-wrapper button:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 /*button animations */
@@ -357,6 +357,7 @@
   height: 40px;
 }
 #game-play-ui header img {
+  border-radius: 50%;
   margin: 0 16px;
   width: 40px;
   height: 40px;
