@@ -9,9 +9,11 @@ It was created a while ago and just went through it to refactor the code and thi
 
 The computer has no easy or hard mode. It is always trying to win, although the logic needs improving.
 
+<p>
 <img src="images/screenshots/screenshot-1.png" width="232" alt="Screenshot lading page for game">
 <img src="images/screenshots/screenshot-2.png" width="232" alt="Screenshot select character">
 <img src="images/screenshots/screenshot-3.png" width="232" alt="Screenshot playing the game against computer">
+</p>
 
 ## Future Features
 
