@@ -59,9 +59,13 @@
 }
 
 #main-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgb(var(--theme-black));
   width: 100%;
-  height: 480px;
+  height: 100vh;
+  padding: 1rem 0;
 }
 /*
  * GLOBAL STYLES
