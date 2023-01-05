@@ -50,5 +50,5 @@ Pull requests are welcomed.
 
 ## Authors
 
-- [Amy Louise Sutton](https://amythehatter.com) - images creator
-- [Carlos E Alford M](https://carlosealford.com) - website implemention
+- [Amy Louise Sutton](https://amythehatter.com) - images designer
+- [Carlos E Alford M](https://carlosealford.com) - app developer
