@@ -2,6 +2,8 @@
 
 Classic tic tac toe game but instead of using X and O you use Moomin characters to play with and against.
 
+:video_game: **[Play Game](https://games.carlosealford.com/tic-tac-toe-moomins-edit/)**
+
 ## About :pushpin:
 
 I built this game just to practice Vanilla JS and CSS.
