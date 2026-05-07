@@ -17,13 +17,13 @@ The computer has no easy or hard mode. It is always trying to win, although the 
 <img src="images/screenshots/screenshot-3.png" width="232" alt="Screenshot playing the game against computer">
 </p>
 
-## Built with
+## Tech Stack
 
 - HTML
 - CSS
 - Javascript
 
-## Run locally
+## Run Locally
 
 Run a local server to load this file or open it with any browser.
 
