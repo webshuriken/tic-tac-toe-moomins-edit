@@ -54,3 +54,7 @@ Pull requests are welcomed.
 
 - [Amy Louise Sutton](https://amythehatter.com) - images designer
 - [Carlos E Alford M](https://carlosealford.com) - app developer
+
+## License
+
+- [GNU](LICENSE)
