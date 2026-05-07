@@ -17,17 +17,13 @@ The computer has no easy or hard mode. It is always trying to win, although the 
 <img src="images/screenshots/screenshot-3.png" width="232" alt="Screenshot playing the game against computer">
 </p>
 
-## Future Features
+## Built with
 
-There are a couple of features I want to add.
+- HTML
+- CSS
+- Javascript
 
-- Check the computer moves logic and improve. _2nd iteration_
-- Randomise which players starts the game. Currently the computer always goes second.
-- Add a scoring system
-- Option for a second human player
-- Make it into a react project
-
-## Getting started
+## Run locally
 
 Run a local server to load this file or open it with any browser.
 
@@ -35,11 +31,22 @@ Run a local server to load this file or open it with any browser.
 - No plugins
 - Just open the page on the browser and off you go!
 
-## Built with
+## Game Features
 
-- HTML
-- CSS
-- Javascript
+- Character selection: Moomintroll, Snufkni, Little My, MoominPapa hat, MoominMamas bag, Grok, Sniff, Lighthouse, Hattifatteners
+- Play agains computer, medium level only.
+- Shows **winning** and **losing** banners
+
+## Road Map
+
+### Version 1.1.0
+
+- [ ] Check the computer moves logic and improve. _2nd iteration_
+- [ ] Randomise which players starts the game. Currently the computer always goes second.
+
+### Version 1.2.0
+
+- [ ] Option for a second human player on the same computer
 
 ## Contributing
 
@@ -54,3 +61,7 @@ Pull requests are welcomed.
 
 - [Amy Louise Sutton](https://amythehatter.com) - images designer
 - [Carlos E Alford M](https://carlosealford.com) - app developer
+
+## License
+
+- [GNU](LICENSE)
