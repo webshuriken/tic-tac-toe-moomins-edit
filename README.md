@@ -37,7 +37,7 @@ Run a local server to load this file or open it with any browser.
 - Play agains computer, medium level only.
 - Shows **winning** and **losing** banners
 
-## Road Map
+## Roadmap
 
 ### Version 1.1.0
 
