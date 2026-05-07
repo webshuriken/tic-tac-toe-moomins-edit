@@ -65,4 +65,4 @@ Pull requests are welcomed.
 
 ## License
 
-- [GNU](LICENSE)
+[GNU](LICENSE)
