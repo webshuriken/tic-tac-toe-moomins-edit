@@ -41,6 +41,7 @@ Run a local server to load this file or open it with any browser.
 
 ### Version 1.1.0
 
+- [ ] Review `HTML` sematics, latest `CSS` features and the use of modern `JS`.
 - [ ] Check the computer moves logic and improve. _2nd iteration_
 - [ ] Randomise which players starts the game. Currently the computer always goes second.
 
