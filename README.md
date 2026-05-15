@@ -17,13 +17,13 @@ The computer has no easy or hard mode. It is always trying to win, although the 
 <img src="images/screenshots/screenshot-3.png" width="232" alt="Screenshot playing the game against computer">
 </p>
 
-## Built with
+## Tech Stack
 
 - HTML
 - CSS
 - Javascript
 
-## Run locally
+## Run Locally
 
 Run a local server to load this file or open it with any browser.
 
@@ -37,10 +37,11 @@ Run a local server to load this file or open it with any browser.
 - Play agains computer, medium level only.
 - Shows **winning** and **losing** banners
 
-## Road Map
+## Roadmap
 
 ### Version 1.1.0
 
+- [ ] Review `HTML` sematics, latest `CSS` features and the use of modern `JS`.
 - [ ] Check the computer moves logic and improve. _2nd iteration_
 - [ ] Randomise which players starts the game. Currently the computer always goes second.
 
@@ -64,4 +65,4 @@ Pull requests are welcomed.
 
 ## License
 
-- [GNU](LICENSE)
+[GNU](LICENSE)
